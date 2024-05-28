@@ -14,23 +14,23 @@ os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 # ドキュメントの準備
 documents = [
     Document(
-        page_content="犬は忠誠心とフレンドリーさで知られる、素晴らしいパートナーです。",
+        page_content="ハムスターは飼いやすく、小さな子供にも人気のあるペットです。",
         metadata={"source": "mammal-pets-doc"},
     ),
     Document(
-        page_content="猫は独立したペットであり、自分だけの空間を楽しむことがよくあります。",
+        page_content="フェレットは遊び心があり、飼い主との絆を深めることができます。",
         metadata={"source": "mammal-pets-doc"},
     ),
     Document(
-        page_content="金魚は比較的簡単な飼育で初心者にも人気のペットです。",
+        page_content="ベタは美しい色合いを持ち、水槽を彩る魅力的な魚です。",
         metadata={"source": "fish-pets-doc"},
     ),
     Document(
-        page_content="オウムは人間の言葉を真似ることができる賢い鳥です。",
+        page_content="カナリアは美しい声で歌うことができ、音楽的な楽しみを提供します。",
         metadata={"source": "bird-pets-doc"},
     ),
     Document(
-        page_content="ウサギは社会的な動物であり、飛び回るのに十分なスペースが必要です。",
+        page_content="モルモットは社交的で、グループで飼うと特に幸せになります。",
         metadata={"source": "mammal-pets-doc"},
     ),
 ]
@@ -43,8 +43,8 @@ vectorstore = Chroma.from_documents(
 
 def main():
     # 類似度検索の例
-    print("Similarity Search for '猫':")
-    results = vectorstore.similarity_search("猫")
+    print("Similarity Search for 'ハムスター':")
+    results = vectorstore.similarity_search("ハムスター")
     for result in results:
         print(f"- {result.page_content} (source: {result.metadata['source']})")
     print("\n")
@@ -57,8 +57,8 @@ def main():
 
     # Retrieverの実行例
     print("Retriever Batch Search Results:")
-    retriever_results = retriever.batch(["猫", "魚"])
-    for query, result in zip(["猫", "魚"], retriever_results):
+    retriever_results = retriever.batch(["ハムスター", "カナリア"])
+    for query, result in zip(["ハムスター", "カナリア"], retriever_results):
         print(f"Query: {query}")
         for doc in result:
             print(f"- {doc.page_content} (source: {doc.metadata['source']})")
@@ -84,8 +84,8 @@ def main():
     rag_chain = {"context": retriever, "question": RunnablePassthrough()} | prompt | llm
 
     # 質問応答
-    print("RAG Chain Response for '猫について教えてください':")
-    response = rag_chain.invoke("猫について教えてください")
+    print("RAG Chain Response for 'ハムスターについて教えてください':")
+    response = rag_chain.invoke("ハムスターについて教えてください")
     print(response.content)
 
 if __name__ == "__main__":
