@@ -4,5 +4,5 @@ services:
     volumes:
       - .:/app
     tty: true
-    container_name: rag_chatbot_container # set the container name
-    # This service sets up an environment for a Chat_bot using RAG (Retrieval-Augmented Generation)
+    container_name: rag_chatbot_0120
+    working_dir: /app
