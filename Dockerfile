@@ -1,14 +1,11 @@
-# ベースイメージとしてPython 3.9を使用
+# Set the base image (host OS)
 FROM python:3.11
 
-# 作業ディレクトリを設定
+# Set the working directory in the container
 WORKDIR /app
 
-# requirements.txtを作業ディレクトリにコピー
-COPY requirements.txt .
+# Copy the content of the local directory to the working directory
+COPY . .
 
-# パッケージをインストール
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-
-# エントリーポイントを設定
-ENTRYPOINT ["/bin/bash"]

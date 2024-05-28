@@ -65,7 +65,7 @@ def main():
     print("\n")
 
     # LLMの準備
-    llm = ChatOpenAI(model="gpt-3.5-turbo")
+    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.1, max_tokens=100)
 
     # プロンプトテンプレートの準備
     message = """
